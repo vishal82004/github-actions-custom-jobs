@@ -10,8 +10,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Cache dependencies
-        id: cache
-        uses: ./.github/actions/action.yml
+        uses: ./.github/actions
       - name: Lint code
         run: npm run lint
   test:
@@ -20,8 +19,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Cache dependencies
-        id: cache
-        uses: ./.github/actions/action.yml
+        uses: ./.github/actions
       - name: Test code
         id: run-tests
         run: npm run test
@@ -38,11 +36,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Cache dependencies
-        id: cache
-        uses: ./.github/actions/action.yml
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
+        uses: ./.github/actions
       - name: Build website
         run: npm run build
       - name: Upload artifacts
